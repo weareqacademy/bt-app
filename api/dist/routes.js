@@ -42,27 +42,29 @@ routes.get('/', async (req, res) => {
   res.json({
     name: 'Api Bodytest',
     version: '1.2.0',
-    mode: process.env.NODE_ENV,
-    created_by: "Fernando Papito"
+    mode: 'development',
+    created_by: "QAcademy"
   });
 });
 
 // Apply Brute in production Mode
-if (process.env.NODE_ENV === 'production') {
-  const bruteStore = new (0, _expressbruteredis2.default)({
-    host: process.env.HOST,
-    port: process.env.PORT,
-  });
-  const bruteForce = new (0, _expressbrute2.default)(bruteStore);
-  routes.post(
-    '/sessions',
-    bruteForce.prevent,
-    _SessionStoreValidator2.default,
-    _SessionController2.default.store
-  );
-} else {
-  routes.post('/sessions', _SessionStoreValidator2.default, _SessionController2.default.store);
-}
+// if (process.env.NODE_ENV === 'production') {
+//   const bruteStore = new (0, _expressbruteredis2.default)({
+//     host: process.env.HOST,
+//     port: process.env.PORT,
+//   });
+//   const bruteForce = new (0, _expressbrute2.default)(bruteStore);
+//   routes.post(
+//     '/sessions',
+//     bruteForce.prevent,
+//     _SessionStoreValidator2.default,
+//     _SessionController2.default.store
+//   );
+// } else {
+//   routes.post('/sessions', _SessionStoreValidator2.default, _SessionController2.default.store);
+// }
+
+routes.post('/sessions', _SessionStoreValidator2.default, _SessionController2.default.store);
 
 // Routes Students
 routes.post(

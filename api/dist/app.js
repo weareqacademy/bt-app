@@ -69,13 +69,22 @@ class App {
 
   exceptionHandler() {
     this.app.use(async (err, req, res, next) => {
-      if (process.env.NODE_ENV === 'development') {
-        const errors = await new (0, _youch2.default)(err, req).toJSON();
-        return res.status(500).json(errors);
-      }
-      return res.status(500).json({
-        error: 'Internal server error',
-      });
+
+      // if (process.env.NODE_ENV === 'development') {
+      //   const errors = await new (0, _youch2.default)(err, req).toJSON();
+      //   return res.status(500).json(errors);
+      // }
+
+      const errors = await new (0, _youch2.default)(err, req).toJSON();
+      return res.status(500).json(errors);
+
+      // if (process.env.NODE_ENV === 'development') {
+      //   const errors = await new (0, _youch2.default)(err, req).toJSON();
+      //   return res.status(500).json(errors);
+      // }
+      // return res.status(500).json({
+      //   error: 'Internal server error',
+      // });
     });
   }
 }

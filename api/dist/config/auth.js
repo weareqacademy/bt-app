@@ -1,4 +1,4 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true});exports. default = {
-  secret: process.env.APP_SECRET,
+  secret: 'bodytest',
   expiresIn: '7d',
 };
